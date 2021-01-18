@@ -1,0 +1,11 @@
+{% extends "base_template.html" %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<h1>WELCOME PAGE TEST</h1>
+<!-- # sign means go back to same page-->
+<form action="/login" method="get">
+    <p><input type="submit" value="Login" /></p>
+</form>
+{% endblock %}
