@@ -1,5 +1,5 @@
 {% extends "base_template.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}My Profile{% endblock %}
 
 {% block content %}
     {% with messages = get_flashed_messages() %}
@@ -10,7 +10,12 @@
         {% endif %}
     {% endwith %}
 
-<h1>LOGGED IN HOME PAGE TEST</h1>
+<h1>USER PROFILE PAGE TEST</h1>
 
 <h3> Welcome to the website, {{username}}</h3>
+
+<form class="form-inline my-2 my-lg-0" action="/logout" method="get">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+</form>
+
 {% endblock %}

@@ -20,19 +20,19 @@ def login():
         session["password"] = password
 
         flash("Message: Login Successful!")
-        return redirect(url_for("home"))
+        return redirect(url_for("profile"))
     else:
         if "username" in session and "password" in session:
             flash("Message: You are already logged in")
-            return redirect(url_for("home"))
+            return redirect(url_for("profile"))
         
         return render_template("login.html")
 
-# HOMEPAGE after login
-@app.route("/home")
-def home():
+# USERPROFILE after login
+@app.route("/profile")
+def profile():
     if "username" in session and "password" in session:
-        return render_template("home.html", username=session["username"])
+        return render_template("profile.html", username=session["username"])
     else:
         flash("Message: You are not logged in.")
         return redirect(url_for("login"))
