@@ -1,49 +1,32 @@
-from flask import Flask, redirect, url_for, render_template, request, session, flash
+import webapp2
+from google.appengine.ext.webapp import template
 
-app = Flask(__name__)
+class IndexPage(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+            'placeholder': "PLACEHOLDER"
+        }
+        self.response.out.write(template.render('./templates/index.html', template_values))
 
-app.secret_key = "12345"
+class LoginPage(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+            'placeholder': "PLACEHOLDER"
+        }
+        self.response.out.write(template.render('./templates/login.html', template_values))
 
-@app.route("/")
-def index():
-    return render_template("index.html")
+    def post(self):
+        username = self.request.get('username')
+        password = self.request.get('password')
+        self.response.out.write("<h1>Your username: " + username + "  Your password: " + password + "</h1>")
 
-# LOGIN PAGE
-@app.route("/login", methods=["POST", "GET"])
-def login():
-    # TODO check against existing usernames/passwords
-    # if receives POST request from HTML form
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        session["username"] = username
-        session["password"] = password
+app = webapp2.WSGIApplication([
+    webapp2.Route(r'/', handler=IndexPage, name='home'),
+    webapp2.Route(r'/login', handler=LoginPage, name='login'),
+    ], debug=True)
 
-        flash("Message: Login Successful!")
-        return redirect(url_for("profile"))
-    else:
-        if "username" in session and "password" in session:
-            flash("Message: You are already logged in")
-            return redirect(url_for("profile"))
-        
-        return render_template("login.html")
-
-# USERPROFILE after login
-@app.route("/profile")
-def profile():
-    if "username" in session and "password" in session:
-        return render_template("profile.html", username=session["username"])
-    else:
-        flash("Message: You are not logged in.")
-        return redirect(url_for("login"))
-
-# LOGOUT - function, not a page
-@app.route("/logout")
-def logout():
-    flash("Message: You have been logged out.", "info")
-    session.pop("username", None)
-    session.pop("password", None)
-    return redirect(url_for("login"))
+def main():
+    app.run()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    main()
