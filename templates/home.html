@@ -191,10 +191,11 @@ font-weight: bold
 }
 
 .form-popup p{
-display:none;
 font-size:14px;
-color:red;
+color:#252573;
 }
+
+
 
 .LogoutButton{
     border: none;
@@ -205,13 +206,52 @@ color:red;
     font-size: 24px;
 }
 
-#RegistrationForm{
+#RegistrationForm,#QuestionForm,#FamilyForm{
 left: 25%;
 }
+#QuestionForm,#FamilyForm p{
+color:#252573;}
 
-#RegistrationForm .form-container{
+#QuestionForm,#FamilyForm{display:none;}
+
+
+
+
+
+.form-container{
 max-width:800px;
 }
+.font-12{
+font-size:12px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #252573;
+  padding: 10px 10px;
+  text-decoration: none;
+  display: block;
+  font-size: 12px;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
 
 </style>
   </head>
@@ -221,7 +261,13 @@ max-width:800px;
       <div class="navbar-inner">
        
     	<ul>
-<li style = "float:left">  <a href = "#menu"> Menu</a></li>
+<li class="dropdown" style = "float:left">  <a href = "#menu"> Menu</a>
+<div class="dropdown-content">
+    <a href="#" id="RegistrationFormBtn" onclick="openRegistrationForm()" > User RegistrationForm</a>
+    <a href="#" id="QuestionFormBtn" onclick="openQuestionForm()">QuestionForm</a>
+    <a href="#" id="FamilyFormBtn" onclick="openFamilyForm()">Family RegistrationForm</a>
+  </div>
+</li>
 <li style = "float:left"><i class="fa fa-bars" style="font-size:24px"></i> </li> 
 	<li> <form action="/Logout"><input type="submit" value="Logout" class="LogoutButton"/></form></li>
 	<li><h1>Welcome user</h1></li> 
@@ -235,10 +281,13 @@ max-width:800px;
   <form action="/action_page.php" class="form-container">
     <h1>User Registration Form</h1>
 
-    <label for="fname"><b>First Name</b></label>
-    <input type="text" placeholder="Enter First Name" name="fname" required>
-	<label for="sname"><b>SurName</b></label>
-    <input type="text" placeholder="Enter First Name" name="sname" required>
+    <label for="fname"><b>Full Name</b></label>
+    <input type="text" placeholder="Enter Full Name" name="fname" required>
+	<p>Gender</p>
+  <input type="radio" name="Male" value="Yes">
+  <label class="font-12" for="male">Male</label><br>
+  <input type="radio" name="Female" value="No">
+  <label class="font-12" for="female">Female</label><br>
 	<label for="dob"><b>Date of Birth</b></label>
     <input type="text" placeholder="Enter DOB" name="dob" required>
 	<label for="email"><b>Email</b></label>
@@ -249,10 +298,83 @@ max-width:800px;
     <button type="submit" class="btn">Submit</button>
   </form>
 </div>
+<div class="form-popup" id="QuestionForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>History in the last 14 days</h1>
+
+
+	
+		<p>Have you been to/returned from the disease area?</p>
+  <input type="radio" name="qst1" value="Yes">
+  <label for="male">Yes</label><br>
+  <input type="radio" name="qst1" value="No">
+  <label for="female">No</label><br>
+  
+  <br>
+   <p>Have you contacted a positive case?</p>
+  <input type="radio" name="qst2" value="Yes">
+  <label for="male">Yes</label><br>
+  <input type="radio" name="qst2" value="No">
+  <label for="female">No</label><br>
+ 
+  <br>  
+  
+   <p>Have you got flu symptoms</p>
+  <input type="radio" name="qst3" value="Yes">
+  <label for="male">Yes</label><br>
+  <input type="radio" name="qst3" value="No">
+  <label for="female">No</label><br>
+<button type="submit" class="btn">Submit</button>
+  </form>
+</div>
+
+<div class="form-popup" id="FamilyForm">
+  <form action="/action_page.php" class="form-container">
+    <h1>Family Registration Form</h1>
+
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter Name" name="name" required>
+	<label for="age"><b>Age</b></label>
+    <input type="text" placeholder="Enter Age" name="age" required>
+	
+	<p>Gender</p>
+  <input type="radio" name="Male" value="Yes">
+  <label class="font-12" for="male">Male</label><br>
+  <input type="radio" name="Female" value="No">
+  <label class="font-12" for="female">Female</label><br>
+ 	
+	<label for="address"><b>Address</b></label>
+    <input type="text" placeholder="Enter Address" name="address" required>
+  
+    <button type="submit" class="btn">Submit</button>
+  </form>
+</div>
+
+
 </div>
 
 
   </body>
+  
+  <script>
+function openRegistrationForm() {
+  document.getElementById("RegistrationForm").style.display = "block";
+  document.getElementById("FamilyForm").style.display = "none";
+  document.getElementById("QuestionForm").style.display = "none";
+}
+
+function openFamilyForm() {
+  document.getElementById("RegistrationForm").style.display = "none";
+  document.getElementById("FamilyForm").style.display = "block";
+  document.getElementById("QuestionForm").style.display = "none";
+}
+function openQuestionForm() {
+ document.getElementById("RegistrationForm").style.display = "none";
+  document.getElementById("FamilyForm").style.display = "none";
+  document.getElementById("QuestionForm").style.display = "block";
+}
+
+</script>
 
 </html>
 {% endautoescape %}
