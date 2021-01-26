@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+  <head>
+    <!-- [START css] -->
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="/bootstrap/css/bootstrap-responsive.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- [END css] -->
+    <style type="text/css">
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+   background-repeat: no-repeat;
+   background-size: cover;
+		
+      }
+      blockquote {
+        margin-bottom: 10px;
+        border-left-color: #bbb;
+      }
+      form {
+        margin-top: 10px;
+      }
+      .form-signin input[type="text"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+      .row {
+        margin-left: 0px;
+        margin-top: 10px;
+        overflow: scroll;
+      }
+	
+	.brand{
+		font-size : 30px !important;
+		font-weight : bold;
+		font style: 
+	}
+
+	.navbar-inner{
+	height : 80px;
+}
+
+
+	li{
+	float : right;
+}
+
+	li a{
+	
+	display : block; 
+	colour: white;
+	text-align: center;
+	padding : 14px 16px;
+	font-size: 24px;
+}
+li i{
+    display: block;
+    color: #337ab7;
+    text-align: center;
+    padding: 20px 2px;
+    font-size: 24px;
+}
+
+
+ul{
+	margin: 12.5px;
+	padding:0;
+}
+.container{
+	margin-top: 40px;
+	height : 200px;
+	background-color:#252573 !important;
+	width: 100%;
+
+}
+
+.search container{
+
+    float: right;
+    padding: 6px 10px;
+    margin-top: 60px;
+    margin-right: 16px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    height: auto;
+}	
+
+
+.form-popup {
+  position: fixed;
+  top: 15%;
+  right: 15px;
+  z-index: 9;
+  left:40%;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+.table-container{
+overflow-y: scroll;
+    height: 360px;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color:#252573;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.form-container h1,label{
+color:#252573;
+text-align: center;
+}
+
+
+#overlay {
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 2;
+  cursor: pointer;
+}
+.navbar-inner h1{
+  position: fixed;
+    width: 30%;
+    right: 30%;
+color:#7595f1;
+}
+.navbar{
+background-color:#37414c;
+border-color:#37414c;
+}
+.mainpage-content{
+    position: fixed;
+    width: 400px;
+    height: 300px;
+    top: 300px;
+    right: 50px;
+}
+p{
+font-size: 24px;
+color: #2a292b;
+font-weight: bold
+}
+
+.form-popup p{
+font-size:14px;
+color:#252573;
+}
+
+
+
+.LogoutButton{
+    border: none;
+    background: none;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 24px;
+}
+
+#RegistrationForm{
+left: 15%;
+max-width:800px;
+}
+
+
+.form-container{
+max-width: 900px;
+}
+.font-12{
+font-size:12px;
+}
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+#myInput {
+  background-image: url('search-icon.png');
+  background-position: 2px 2px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+  background-size: contain;
+}
+
+#myTable {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+}
+</style>
+  </head>
+  <body>
+<div id="overlay"></div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+       
+    	<ul>
+	<li> <form action="/Logout"><input type="submit" value="Logout" class="LogoutButton"/></form></li>
+	<li><h1>Welcome admin</h1></li> 
+	</ul>
+        </div>
+    </div>
+
+</div>
+<div class='mainpage-content'>
+<div class="form-popup" id="RegistrationForm">
+  <h2>User Details</h2>
+ <form action="/action_page.php" class="form-container">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<div class="table-container">
+<table id="myTable">
+  <tr class="header">
+    <th style="width:30%;">Name</th>
+    <th style="width:10%;">Disease Area</th>
+	<th style="width:10%;">Positive contact</th>
+	<th style="width:10%;">Flue Symptoms</th>
+	<th style="width:10%;">Positive/Negative</th>
+	<th style="width:10%;">Mark Positive</th>
+	
+	
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Germany</td>
+	<td>yes</td>
+	<td>yes</td>
+	<td>yes</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td
+	
+  </tr>
+  <tr>
+    <td>Berglunds snabbkop</td>
+    <td>Sweden</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+	
+  </tr>
+  <tr>
+    <td>Island Trading</td>
+    <td>UK</td>
+	<td>yes</td>
+	<td>yes</td>
+	<td>yes</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+  <tr>
+    <td>Koniglich Essen</td>
+    <td>Germany</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+  <tr>
+    <td>Laughing Bacchus Winecellars</td>
+    <td>Canada</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+  <tr>
+    <td>Magazzini Alimentari Riuniti</td>
+    <td>Italy</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+  <tr>
+    <td>North/South</td>
+    <td>UK</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+  <tr>
+    <td>Paris specialites</td>
+    <td>France</td>
+	<td>No</td>
+	<td>No</td>
+	<td>No</td>
+	<td><input type="checkbox" id="status" name="positive" value="yes"></td>
+  </tr>
+</table>
+</div>
+ <button type="submit" class="btn">Submit</button>
+</form>
+
+</div>
+</div>
+
+
+  </body>
+  
+  <script>
+function openRegistrationForm() {
+  document.getElementById("RegistrationForm").style.display = "block";
+  document.getElementById("FamilyForm").style.display = "none";
+  document.getElementById("QuestionForm").style.display = "none";
+}
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+</script>
+
+</html>
+{% endautoescape %}
