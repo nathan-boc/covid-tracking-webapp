@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Heatmap</title>
+		<script defer
+			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3jkBYAtk65sIloLD133uqkW3q5jJKI0I&libraries=visualization&callback=initMap">
+		</script>
+
+		<style type="text/css">
+			#map {
+			height: 100%;
+			}
+	
+			/* Optional: Makes the sample page fill the window. */
+			html,
+			body {
+			height: 90%;
+			margin: 5%;
+			padding: 0;
+			
+			}
+		</style>
+
+		<script>
+			function initMap() {
+
+				var melbourne = new google.maps.LatLng(-37.813629, 144.963058);
+
+				map = new google.maps.Map(document.getElementById('map'), {
+				center: melbourne,
+				zoom: 13,
+				mapTypeId: 'satellite',
+				});
+
+				var heatmap = new google.maps.visualization.HeatmapLayer({
+				data: getDataPoints(),
+				map: map,
+				});
+			}
+
+			function getDataPoints() {
+				return [
+					new google.maps.LatLng(37.782, -122.447),
+					new google.maps.LatLng(37.782, -122.445),
+					new google.maps.LatLng(37.782, -122.443),
+					new google.maps.LatLng(37.782, -122.441),
+					new google.maps.LatLng(37.782, -122.439),
+					new google.maps.LatLng(37.782, -122.437),
+					new google.maps.LatLng(37.782, -122.435),
+					new google.maps.LatLng(37.785, -122.447),
+					new google.maps.LatLng(37.785, -122.445),
+					new google.maps.LatLng(37.785, -122.443),
+					new google.maps.LatLng(37.785, -122.441),
+					new google.maps.LatLng(37.785, -122.439),
+				];
+			}
+		</script>
+	</head>
+  	<body>
+		<div><h1>Heatmap - showing number of cases by area</h1></div>
+		<div id="map"></div>
+	</body>
+</html>
