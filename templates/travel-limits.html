@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Travel Limit</title>
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3jkBYAtk65sIloLD133uqkW3q5jJKI0I&libraries=visualization&callback=initMap">
+        </script>
+
+    <style type="text/css">
+        #map {
+            height: 100%;
+            margin: 5%
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0%;
+            padding: 0;
+        }
+    </style>
+
+    <script>
+        let map, infoWindow;
+
+        function initMap() {
+            var melbourne = new google.maps.LatLng(-37.813629, 144.963058);
+
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: melbourne,
+                zoom: 12,
+            });
+
+            infoWindow = new google.maps.InfoWindow();
+            const locationButton = document.createElement("button");
+            locationButton.textContent = "Find My Location";
+            locationButton.classList.add("custom-map-control-button");
+            map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+            locationButton.addEventListener("click", () => {
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(
+                        (position) => {
+                            const pos = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude,
+                            };
+							
+							map.setCenter(pos);
+							
+							new google.maps.Marker({
+                                position: pos,
+                                map,
+                                animation: google.maps.Animation.DROP,
+                                title: "You are here",
+                            })
+							
+                            infoWindow.setPosition(pos);
+                            infoWindow.setContent("You are here");
+                            infoWindow.open(map);
+
+                            const cityCircle = new google.maps.Circle({
+                                strokeColor: "#FF0000",
+                                strokeOpacity: 0.8,
+                                strokeWeight: 2,
+                                fillColor: "#FF0000",
+                                fillOpacity: 0.35,
+                                map,
+                                center: pos,
+                                radius: 5000,
+                            });
+                        },
+                        () => {
+                            handleLocationError(true, infoWindow, map.getCenter());
+                        }
+                    );							
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+            });
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(
+                browserHasGeolocation
+                    ? "Error: The Geolocation service failed."
+                    : "Error: Your browser doesn't support geolocation."
+            );
+            infoWindow.open(map);
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Map - showing a circular radius from current location - 5, 10, 15km button options</h1>
+		
+	</div>
+    <div id="map"></div>
+</body>
+
+</html>

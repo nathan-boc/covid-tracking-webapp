@@ -54,6 +54,13 @@ class HeatMapPage(webapp2.RequestHandler):
         }
         self.response.out.write(template.render('./templates/heatmap.html', template_values))
 
+class TravelLimitsPage(webapp2.RequestHandler):
+    def get(self):
+        template_values = {
+            'placeholder': "PLACEHOLDER"
+        }
+        self.response.out.write(template.render('./templates/travel-limits.html', template_values))
+
 app = webapp2.WSGIApplication([
     webapp2.Route(r'/', handler=IndexPage, name='index'),
     webapp2.Route(r'/login', handler=LoginPage, name='login'),
@@ -61,6 +68,7 @@ app = webapp2.WSGIApplication([
     webapp2.Route(r'/admin', handler=AdminPage, name='admin'),
     webapp2.Route(r'/home', handler=HomePage, name='home'),
     webapp2.Route(r'/heatmap', handler=HeatMapPage, name='heatmap'),
+    webapp2.Route(r'/travel-limits', handler=TravelLimitsPage, name='travel-limits'),
     ], debug=True)
 
 def main():
