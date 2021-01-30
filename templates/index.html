@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-{% autoescape on %}
+{% autoescape true %}
 <html>
   <head>
     <!-- [START css] -->
@@ -15,7 +15,7 @@
         padding-top: 40px;
         padding-bottom: 40px;
         background-color: #f5f5f5;
-		 background-image: url("big_165616_Coronavirus-.jpg");
+		 background-image: url("/bootstrap/img/big_165616_Coronavirus-.jpg");
   
    background-repeat: no-repeat;
    background-size: cover;
@@ -67,7 +67,7 @@ li i{
     display: block;
     color: #337ab7;
     text-align: center;
-    padding: 20px 2px;
+    padding: 14px 0px;
     font-size: 24px;
 }
 
@@ -168,7 +168,7 @@ color:#252573;
   cursor: pointer;
 }
 .navbar-inner h1{
-margin-right:250px;
+margin-right:450px;
 color:#7595f1;
 }
 .navbar{
@@ -188,6 +188,10 @@ color: #2a292b;
 font-weight: bold
 }
 
+.form-popup p{
+font-size:14px;
+color:#252573;
+}
 
 
     </style>
@@ -214,22 +218,28 @@ font-weight: bold
 </div>
 
 <div class="form-popup" id="myForm">
-  <form action="/action_page.php" class="form-container">
+  <form action="/sign" class="form-container">
     <h1>Login</h1>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="text" placeholder="Enter Email" name="username" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
+    <input type="password" placeholder="Enter Password" name="password" required>
+    {% if error == "true" %}
+    <p>User id or password is invalid
+    </p>
+    <script> document.getElementById("myForm").style.display = "block";</script>
+    {% else %} 
+    <p>enter a numeric password</p>
+    {%endif%}
     <button type="submit" class="btn">Login</button>
     <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
   </form>
 </div>
 
 <div class="form-popup" id="SignUpForm">
-  <form action="/action_page.php" class="form-container">
+  <form action="/signup" class="form-container">
     <h1>Sign Up</h1>
 
     <label for="email"><b>Email</b></label>
@@ -239,8 +249,17 @@ font-weight: bold
     <input type="password" placeholder="Enter Password" name="psw" required>
 	
 	 <label for="psw"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw" required>
-	
+    <input type="password" placeholder="Repeat Password" name="rpsw" required>
+
+    {% if error == "true" %}
+    <p>User id or password is invalid
+    </p>
+    <script> document.getElementById("SignUpForm").style.display = "block";</script>
+    {% else %}
+    <p>enter a numeric password</p>
+    {% endif %}
+
+    
 
     <button type="submit" class="btn">Sign Up</button>
     <button type="submit" class="btn cancel" onclick="closeSignUpForm()">Close</button>
